@@ -68,7 +68,7 @@ const MarketData: React.FC = () => {
     <div>
       <StyledDpiIconLabel>
         <StyledIcon src={dpiTokenIcon.src} alt={dpiTokenIcon.alt} />
-        <span>csIndex</span>
+        <span>csDEFI</span>
       </StyledDpiIconLabel>
       <StyledDpiTitle>CypherShares Index</StyledDpiTitle>
       <p>{dateString}</p>
