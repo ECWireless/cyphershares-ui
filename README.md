@@ -1,6 +1,6 @@
-# Index UI
+# CypherShares UI
 
-Index UI is a simple front-end used to interact with Index. This front-end describes Index and consolidates relevant links to onboard users onto the protocol's basic functionalities. It also allows users to stake, unstake, and claim INDEX tokens during the initial distribution + liquidity mining phase of the protocol's launch.
+CypherShares is a new index protocol that offers the most comprehensive and liquid index products in crypto. Our initial index will be the CypherShares DeFi Index `(csDEFI)` and will hold at least 100 tokens of the best DeFi projects. CypherShares will use a novel Threshold Farming strategy in order to incentivise index liquidity.
 
 ## Installation
 
