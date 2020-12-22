@@ -79,6 +79,7 @@ const Provider: React.FC = ({ children }) => {
         onSetTransactionStatus(TransactionStatusType.IS_FAILED)
       }
     },
+    // eslint-disable-next-line
     [ethereum, account, setConfirmTxModalIsOpen]
   )
 
@@ -115,6 +116,7 @@ const Provider: React.FC = ({ children }) => {
         onSetTransactionStatus(TransactionStatusType.IS_FAILED)
       }
     },
+    // eslint-disable-next-line
     [ethereum, account, setConfirmTxModalIsOpen]
   )
 
@@ -144,6 +146,7 @@ const Provider: React.FC = ({ children }) => {
     } else {
       onSetTransactionStatus(TransactionStatusType.IS_FAILED)
     }
+    // eslint-disable-next-line
   }, [ethereum, account, setConfirmTxModalIsOpen])
 
   const handleUnstakeAndHarvest = useCallback(async () => {
@@ -172,6 +175,7 @@ const Provider: React.FC = ({ children }) => {
     } else {
       onSetTransactionStatus(TransactionStatusType.IS_FAILED)
     }
+    // eslint-disable-next-line
   }, [ethereum, account, setConfirmTxModalIsOpen])
 
   const currentTime = Date.now()

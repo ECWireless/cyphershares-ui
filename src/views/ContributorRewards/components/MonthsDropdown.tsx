@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react'
 import { useTheme } from 'react-neu'
-import { NavLink, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Select from 'react-select'
 import styled from 'styled-components'
 
 const CustomOption = (props: any) => {
-  const { innerProps, value, label, data } = props
+  const { innerProps, label } = props
   return (
     <DropdownOption {...innerProps}>
       <StyledMonth>{label}</StyledMonth>
@@ -55,6 +55,7 @@ const MonthsDropdown: React.FC = () => {
         padding: 0,
       }),
     }
+    // eslint-disable-next-line
   }, [theme, pathname])
 
   return (

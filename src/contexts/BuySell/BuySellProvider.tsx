@@ -100,6 +100,7 @@ const BuySellProvider: React.FC = ({ children }) => {
         setCurrencyQuantity(uniswapData.display?.to_quantity)
       }
     })
+    // eslint-disable-next-line
   }, [isUserBuying, selectedCurrency, activeField, targetTradeQuantity])
 
   const onExecuteBuySell = useCallback(async () => {
@@ -160,6 +161,7 @@ const BuySellProvider: React.FC = ({ children }) => {
     } catch (e) {
       onSetTransactionStatus(TransactionStatusType.IS_FAILED)
     }
+    // eslint-disable-next-line
   }, [
     account,
     isUserBuying,

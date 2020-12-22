@@ -167,18 +167,18 @@ const ChartTitle = styled.h2`
   font-size: 42px;
 `
 
-const DurationButton = styled.button`
-  background-color: radial-gradient(
-    circle at center top,
-    rgb(22, 20, 31),
-    rgb(22, 20, 31)
-  );
-  border: none;
-  border-radius: 50px;
-  margin: 8px;
-  padding: 0 0 10 10 px;
-  font-size: 1em;
-  color: white;
-`
+// const DurationButton = styled.button`
+//   background-color: radial-gradient(
+//     circle at center top,
+//     rgb(22, 20, 31),
+//     rgb(22, 20, 31)
+//   );
+//   border: none;
+//   border-radius: 50px;
+//   margin: 8px;
+//   padding: 0 0 10 10 px;
+//   font-size: 1em;
+//   color: white;
+// `
 
 export default MarketDataChart

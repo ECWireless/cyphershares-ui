@@ -1,18 +1,15 @@
 import React from 'react'
-import {
-  Box,
-  Button,
-  Notice,
-  NoticeContent,
-  NoticeIcon,
-  Spacer,
-} from 'react-neu'
+import { Notice, NoticeContent, NoticeIcon, Spacer } from 'react-neu'
 import styled from 'styled-components'
 
 const MigrationNotice: React.FC = () => (
   <>
     <Notice>
-      <NoticeIcon>⏳</NoticeIcon>
+      <NoticeIcon>
+        <span role='img' aria-label='hourglass'>
+          ⏳
+        </span>
+      </NoticeIcon>
       <NoticeContent>
         <StyledNoticeContentInner>
           <span>

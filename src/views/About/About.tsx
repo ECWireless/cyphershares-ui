@@ -4,10 +4,10 @@ import { Container } from 'react-neu'
 import { useTheme } from 'react-neu'
 
 import Page from 'components/Page'
-import useDpiTokenMarketData from 'hooks/useDpiTokenMarketData'
+// import useDpiTokenMarketData from 'hooks/useDpiTokenMarketData'
 
 const Home: React.FC = () => {
-  const { latestMarketCap } = useDpiTokenMarketData()
+  // const { latestMarketCap } = useDpiTokenMarketData()
   const { darkMode } = useTheme()
 
   return (

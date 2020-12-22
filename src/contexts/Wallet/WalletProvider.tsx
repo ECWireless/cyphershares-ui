@@ -18,6 +18,7 @@ const WalletProvider: React.FC = ({ children }) => {
     setConnector('')
     setStatus('disconnected')
     localStorage.removeItem('walletconnect')
+    // eslint-disable-next-line
   }, [account, active, connector, status])
 
   const connect = useCallback(
@@ -41,6 +42,7 @@ const WalletProvider: React.FC = ({ children }) => {
         console.log(err)
       }
     },
+    // eslint-disable-next-line
     [account, connector]
   )
 

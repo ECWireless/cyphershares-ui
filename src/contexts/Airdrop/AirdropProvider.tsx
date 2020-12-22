@@ -105,6 +105,7 @@ const AirdropProvider: React.FC = ({ children }) => {
     } else {
       onSetTransactionStatus(TransactionStatusType.IS_FAILED)
     }
+    // eslint-disable-next-line
   }, [
     ethereum,
     account,

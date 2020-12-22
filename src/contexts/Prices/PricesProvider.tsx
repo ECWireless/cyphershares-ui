@@ -66,6 +66,7 @@ const PricesProvider: React.FC = ({ children }) => {
     const calculatedApy = dailyYield.multipliedBy(365)
 
     setAPY(calculatedApy.toFixed(2))
+    // eslint-disable-next-line
   }, [totalUSDInFarms, indexPrice])
 
   useEffect(() => {
@@ -80,6 +81,7 @@ const PricesProvider: React.FC = ({ children }) => {
     const calculatedApy = dailyYield.multipliedBy(365)
 
     setFarmTwoApy(calculatedApy.toFixed(2))
+    // eslint-disable-next-line
   }, [totalUSDInFarms, indexPrice])
 
   return (

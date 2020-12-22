@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Spacer, Card } from 'react-neu'
+import { Container, Spacer } from 'react-neu'
 import Page from 'components/Page'
 import styled from 'styled-components'
 import HeaderNewsCard from './components/HeaderNewsCard'

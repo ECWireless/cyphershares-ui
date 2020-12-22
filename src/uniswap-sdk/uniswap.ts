@@ -1,4 +1,5 @@
 import Web3 from 'web3'
+// eslint-disable-next-line
 import { provider } from 'web3-core'
 import { AbiItem } from 'web3-utils'
 import BigNumber from 'utils/bignumber'

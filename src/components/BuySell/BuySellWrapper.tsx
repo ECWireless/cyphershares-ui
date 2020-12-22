@@ -15,6 +15,7 @@ const BuySellWrapper: React.FC<BuySellWrapperProps> = ({ tokenId }: any) => {
 
   useEffect(() => {
     onSetBuySellToken(tokenId)
+    // eslint-disable-next-line
   }, [])
 
   return (
