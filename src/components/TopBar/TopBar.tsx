@@ -7,7 +7,7 @@ import Logo from 'components/Logo'
 import MenuIcon from 'components/icons/Menu'
 
 import DarkModeSwitch from './components/DarkModeSwitch'
-import Nav from './components/Nav'
+// import Nav from './components/Nav'
 import WalletButton from './components/WalletButton'
 
 interface TopBarProps {
@@ -22,9 +22,9 @@ const TopBar: React.FC<TopBarProps> = ({ onPresentMobileMenu }) => {
           <StyledLogoWrapper>
             <Logo />
           </StyledLogoWrapper>
-          <StyledNavWrapper>
+          {/* <StyledNavWrapper>
             <Nav />
-          </StyledNavWrapper>
+          </StyledNavWrapper> */}
           <StyledAccountButtonWrapper>
             <DarkModeSwitch />
             <Spacer />
@@ -56,14 +56,14 @@ const StyledTopBarInner = styled.div`
   max-width: ${(props) => props.theme.siteWidth}px;
   width: 100%;
 `
-const StyledNavWrapper = styled.div`
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  @media (max-width: 768px) {
-    display: none;
-  }
-`
+// const StyledNavWrapper = styled.div`
+//   display: flex;
+//   flex: 1;
+//   justify-content: center;
+//   @media (max-width: 768px) {
+//     display: none;
+//   }
+// `
 
 const StyledAccountButtonWrapper = styled.div`
   align-items: center;

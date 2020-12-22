@@ -25,14 +25,14 @@ import { TransactionWatcherProvider } from 'contexts/TransactionWatcher'
 
 import useLocalStorage from 'hooks/useLocalStorage'
 
-import About from 'views/About'
-import Farm from 'views/Farm'
-import Home from 'views/Home'
+// import About from 'views/About'
+// import Farm from 'views/Farm'
+// import Home from 'views/Home'
 import DPI from 'views/DPI'
-import INDEX from 'views/INDEX'
-import Vote from 'views/Vote'
-import News from 'views/News'
-import ContributorRewards from './views/ContributorRewards'
+// import INDEX from 'views/INDEX'
+// import Vote from 'views/Vote'
+// import News from 'views/News'
+// import ContributorRewards from './views/ContributorRewards'
 
 import createTheme from 'utils/createCustomTheme'
 import graphqlClient from 'utils/graphql'
@@ -60,9 +60,10 @@ const App: React.FC = () => {
           />
           <Switch>
             <Route exact path='/'>
-              <Home />
+              <DPI />
+              {/* <Home /> */}
             </Route>
-            <Route exact path='/dpi'>
+            {/* <Route exact path='/dpi'>
               <DPI />
             </Route>
             <Route exact path='/index'>
@@ -82,7 +83,7 @@ const App: React.FC = () => {
             </Route>
             <Route path='/news'>
               <News />
-            </Route>
+            </Route> */}
           </Switch>
         </StyledBackgroundDiv>
       </Providers>

@@ -53,7 +53,7 @@ const DpiProductPage: React.FC = () => {
             latestMarketCap={latestMarketCap}
           />
           <Description>
-            <strong>The DeFi Pulse Index</strong> is a capitalization-weighted
+            <strong>CypherShares Index</strong> is a capitalization-weighted
             index that tracks the performance of decentralized financial assets
             across the market.
             <h2>Objective</h2>
