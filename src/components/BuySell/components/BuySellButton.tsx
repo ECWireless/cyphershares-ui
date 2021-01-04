@@ -7,7 +7,7 @@ import useApproval from 'hooks/useApproval'
 import {
   daiTokenAddress,
   usdcTokenAddress,
-  dpiTokenAddress,
+  csTokenAddress,
   indexTokenAddress,
   uniswapRouterAddress,
 } from 'constants/ethContractAddresses'
@@ -34,7 +34,7 @@ const BuySellButton: React.FC = () => {
   const { account, onOpenWalletModal } = useWallet()
   const daiApproval = useApproval(daiTokenAddress, uniswapRouterAddress)
   const usdcApproval = useApproval(usdcTokenAddress, uniswapRouterAddress)
-  const dpiApproval = useApproval(dpiTokenAddress, uniswapRouterAddress)
+  const dpiApproval = useApproval(csTokenAddress, uniswapRouterAddress)
   const indexApproval = useApproval(indexTokenAddress, uniswapRouterAddress)
 
   // Only prompt the user at end of the buy flow. (So they can preview the order before logging in)

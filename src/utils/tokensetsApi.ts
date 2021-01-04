@@ -11,7 +11,9 @@ export const fetchTokenBuySellData = (
 ) => {
   const buyOrSellRoute = isBuyOrder ? 'buy_price' : 'sell_price'
   const coinOrSetRoute = id.toLowerCase() === 'index' ? 'coins' : 'portfolios'
-  const requestUrl = `${baseURL}/v2/${coinOrSetRoute}/${id}/${buyOrSellRoute}?quantity=${requestQuantity}&currency=${currencyId}&input_type=${activeField}`
+  // const requestUrl = `${baseURL}/v2/${coinOrSetRoute}/${id}/${buyOrSellRoute}?quantity=${requestQuantity}&currency=${currencyId}&input_type=${activeField}`
+  const requestUrl = `https://cyphershares-api.vercel.app/api/${buyOrSellRoute}/${requestQuantity}/${currencyId}/${activeField}`
+  // const requestUrl = `http://localhost:3001/api/${buyOrSellRoute}/${requestQuantity}/${currencyId}/${activeField}`
 
   return fetch(requestUrl)
     .then((response) => response.json())

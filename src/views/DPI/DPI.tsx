@@ -1,45 +1,45 @@
 import React from 'react'
 import { Container } from 'react-neu'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
 import Page from 'components/Page'
 import {
   ProductPageHeader,
-  ProductPageContent,
-  TokenStats,
-  PriceChanges,
-  WalletBalance,
-  Description,
-  IndexComponentsTable,
+  // ProductPageContent,
+  // TokenStats,
+  // PriceChanges,
+  // WalletBalance,
+  // Description,
+  // IndexComponentsTable,
 } from 'components/ProductPage'
 import { BuySellWrapper } from 'components/BuySell'
-import ExternalLink from 'components/ExternalLink'
+// import ExternalLink from 'components/ExternalLink'
 import MarketData from './components/MarketData'
 
-import useDpiTokenMarketData from 'hooks/useDpiTokenMarketData'
-import useDpiIndexComponents from 'hooks/useDpiIndexComponents'
-import useBalances from 'hooks/useBalances'
+// import useDpiTokenMarketData from 'hooks/useDpiTokenMarketData'
+// import useDpiIndexComponents from 'hooks/useDpiIndexComponents'
+// import useBalances from 'hooks/useBalances'
 
-import DpiIndexCalculationImage from 'assets/dpi-index-calculation.png'
+// import DpiIndexCalculationImage from 'assets/dpi-index-calculation.png'
 
 const DpiProductPage: React.FC = () => {
-  const {
-    prices,
-    latestPrice,
-    latestMarketCap,
-    latestVolume,
-  } = useDpiTokenMarketData()
-  const { components } = useDpiIndexComponents()
-  const { dpiBalance } = useBalances()
+  // const {
+  //   prices,
+  //   latestPrice,
+  //   latestMarketCap,
+  //   latestVolume,
+  // } = useDpiTokenMarketData()
+  // const { components } = useDpiIndexComponents()
+  // const { dpiBalance } = useBalances()
 
   return (
     <Page>
       <Container size='lg'>
         <ProductPageHeader>
-          <MarketData />
-          <BuySellWrapper tokenId='dpi' />
+          {/* <MarketData /> */}
+          <BuySellWrapper tokenId='csDEFI' />
         </ProductPageHeader>
-        <ProductPageContent>
+        {/* <ProductPageContent>
           <WalletBalance
             symbol='DPI'
             latestPrice={latestPrice}
@@ -51,8 +51,8 @@ const DpiProductPage: React.FC = () => {
             latestPrice={latestPrice}
             latestVolume={latestVolume}
             latestMarketCap={latestMarketCap}
-          />
-          <Description>
+          /> */}
+        {/* <Description>
             <strong>CypherShares Index</strong> is a capitalization-weighted
             index that tracks the performance of decentralized financial assets
             across the market.
@@ -184,16 +184,16 @@ const DpiProductPage: React.FC = () => {
             the first business day of the month. As assets tracked by the index
             grow, the reconstitution window will expand to more than one day to
             lower the reconstitution’s market impact.
-          </Description>
-        </ProductPageContent>
+          </Description> */}
+        {/* </ProductPageContent> */}
       </Container>
     </Page>
   )
 }
 
-const StyledDpiIndexCalculationImage = styled.img`
-  margin-bottom: 20px;
-  width: 100%;
-`
+// const StyledDpiIndexCalculationImage = styled.img`
+//   margin-bottom: 20px;
+//   width: 100%;
+// `
 
 export default DpiProductPage

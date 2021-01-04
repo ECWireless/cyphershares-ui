@@ -8,7 +8,7 @@ import { getBalance, getEthBalance } from 'utils/index'
 import { getEarnedIndexTokenQuantity } from 'index-sdk/stake'
 import { getEarnedIndexTokenQuantity as getEarnedFarmTwoBalance } from 'index-sdk/farmTwo'
 import {
-  dpiTokenAddress,
+  csTokenAddress,
   indexTokenAddress,
   daiTokenAddress,
   usdcTokenAddress,
@@ -20,7 +20,7 @@ import {
 const Provider: React.FC = ({ children }) => {
   const [ethBalance, setEthBalance] = useState<BigNumber>()
   const [indexBalance, setIndexBalance] = useState<BigNumber>()
-  const [dpiBalance, setDpiBalance] = useState<BigNumber>()
+  const [csBalance, setCSBalance] = useState<BigNumber>()
   const [daiBalance, setDaiBalance] = useState<BigNumber>()
   const [usdcBalance, setUsdcBalance] = useState<BigNumber>()
   const [uniswapEthDpiLpBalance, setUniswapEthDpiLpBalance] = useState<
@@ -52,57 +52,60 @@ const Provider: React.FC = ({ children }) => {
     async (userAddress: string, provider: provider) => {
       const balances = await Promise.all([
         getEthBalance(provider, userAddress),
-        getBalance(provider, indexTokenAddress as string, userAddress),
-        getBalance(provider, dpiTokenAddress as string, userAddress),
-        getBalance(provider, daiTokenAddress as string, userAddress),
+        // getBalance(provider, indexTokenAddress as string, userAddress),
+        // getBalance(provider, daiTokenAddress as string, userAddress),
         getBalance(provider, usdcTokenAddress as string, userAddress),
-        getBalance(
-          provider,
-          uniswapEthDpiLpTokenAddress as string,
-          userAddress
-        ),
-        getBalance(provider, stakingRewardsAddress as string, userAddress),
-        getEarnedIndexTokenQuantity(provider, userAddress),
+        getBalance(provider, csTokenAddress as string, userAddress),
+        // getBalance(
+        //   provider,
+        //   uniswapEthDpiLpTokenAddress as string,
+        //   userAddress
+        // ),
+        // getBalance(provider, stakingRewardsAddress as string, userAddress),
+        // getEarnedIndexTokenQuantity(provider, userAddress),
 
-        getBalance(provider, farmTwoAddress as string, userAddress),
-        getEarnedFarmTwoBalance(provider, userAddress),
+        // getBalance(provider, farmTwoAddress as string, userAddress),
+        // getEarnedFarmTwoBalance(provider, userAddress),
       ])
 
       setEthBalance(
         new BigNumber(balances[0]).dividedBy(new BigNumber(10).pow(18))
       )
-      setIndexBalance(
-        new BigNumber(balances[1]).dividedBy(new BigNumber(10).pow(18))
+      setUsdcBalance(
+        new BigNumber(balances[1]).dividedBy(new BigNumber(10).pow(6))
       )
-      setDpiBalance(
+      // setIndexBalance(
+      //   new BigNumber(balances[1]).dividedBy(new BigNumber(10).pow(18))
+      // )
+      setCSBalance(
         new BigNumber(balances[2]).dividedBy(new BigNumber(10).pow(18))
       )
-      setDaiBalance(
-        new BigNumber(balances[3]).dividedBy(new BigNumber(10).pow(18))
-      )
-      setUsdcBalance(
-        new BigNumber(balances[4]).dividedBy(new BigNumber(10).pow(6))
-      )
-      setUniswapEthDpiLpBalance(
-        new BigNumber(balances[5]).dividedBy(new BigNumber(10).pow(18))
-      )
-      setStakedUniswapEthDpiLpBalance(
-        new BigNumber(balances[6]).dividedBy(new BigNumber(10).pow(18))
-      )
-      setUnharvestedIndexBalance(
-        new BigNumber(balances[7]).dividedBy(new BigNumber(10).pow(18))
-      )
-      setStakedFarmTwoBalance(
-        new BigNumber(balances[8]).dividedBy(new BigNumber(10).pow(18))
-      )
-      setUnharvestedFarmTwoBalance(
-        new BigNumber(balances[9]).dividedBy(new BigNumber(10).pow(18))
-      )
+      // setDaiBalance(
+      //   new BigNumber(balances[3]).dividedBy(new BigNumber(10).pow(18))
+      // )
+      // setUsdcBalance(
+      //   new BigNumber(balances[4]).dividedBy(new BigNumber(10).pow(6))
+      // )
+      // setUniswapEthDpiLpBalance(
+      //   new BigNumber(balances[5]).dividedBy(new BigNumber(10).pow(18))
+      // )
+      // setStakedUniswapEthDpiLpBalance(
+      //   new BigNumber(balances[6]).dividedBy(new BigNumber(10).pow(18))
+      // )
+      // setUnharvestedIndexBalance(
+      //   new BigNumber(balances[7]).dividedBy(new BigNumber(10).pow(18))
+      // )
+      // setStakedFarmTwoBalance(
+      //   new BigNumber(balances[8]).dividedBy(new BigNumber(10).pow(18))
+      // )
+      // setUnharvestedFarmTwoBalance(
+      //   new BigNumber(balances[9]).dividedBy(new BigNumber(10).pow(18))
+      // )
     },
     [
       setEthBalance,
       setIndexBalance,
-      setDpiBalance,
+      setCSBalance,
       setUniswapEthDpiLpBalance,
       setStakedUniswapEthDpiLpBalance,
       setUnharvestedIndexBalance,
@@ -115,7 +118,7 @@ const Provider: React.FC = ({ children }) => {
     if (status !== 'connected') {
       setEthBalance(new BigNumber(0))
       setIndexBalance(new BigNumber(0))
-      setDpiBalance(new BigNumber(0))
+      setCSBalance(new BigNumber(0))
       setDaiBalance(new BigNumber(0))
       setUsdcBalance(new BigNumber(0))
       setUniswapEthDpiLpBalance(new BigNumber(0))
@@ -142,7 +145,7 @@ const Provider: React.FC = ({ children }) => {
       value={{
         ethBalance,
         indexBalance,
-        dpiBalance,
+        csBalance,
         daiBalance,
         usdcBalance,
         uniswapEthDpiLpBalance,

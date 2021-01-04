@@ -29,7 +29,7 @@ const WalletModal: React.FC<ModalProps> = ({ isOpen, onDismiss }) => {
   const { reset } = useWallet()
   const {
     indexBalance,
-    dpiBalance,
+    csBalance,
     uniswapEthDpiLpBalance,
     stakedUniswapEthDpiLpBalance,
     stakedFarmTwoBalance,
@@ -78,8 +78,8 @@ const WalletModal: React.FC<ModalProps> = ({ isOpen, onDismiss }) => {
                     'https://set-core.s3.amazonaws.com/img/social_trader_set_icons/defi_pulse_index_set.svg',
                 }}
                 label='DPI balance'
-                link={`https://etherscan.io/address/${tokenAddresses.dpiTokenAddress}`}
-                value={getDisplayBalance(dpiBalance)}
+                link={`https://etherscan.io/address/${tokenAddresses.csTokenAddress}`}
+                value={getDisplayBalance(csBalance)}
               />
             </Box>
           </Split>
