@@ -17,6 +17,7 @@ export const fetchTokenBuySellData = (
 
   return fetch(requestUrl)
     .then((response) => response.json())
+    .then((json) => JSON.parse(json))
     .then((json) => json.buy_price || json.sell_price || {})
     .catch((error) => console.log(error))
 }
