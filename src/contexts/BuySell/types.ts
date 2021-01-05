@@ -19,6 +19,7 @@ export type UniswapPriceData = {
   deadline: number
   gas_cost: string
   gas_price: string
+  slippage: number
   display: UniswapPriceDisplay
   trade_type: 'exact_out' | 'exact_in'
 }

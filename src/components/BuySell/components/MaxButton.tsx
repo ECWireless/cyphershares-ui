@@ -75,6 +75,16 @@ const MaxButton: React.FC = () => {
     )
   }
 
+  if (uniswapData !== undefined) {
+    if (uniswapData?.slippage > 2) {
+      return (
+        <StyledInsufficientBalance>
+          Price impact is too high
+        </StyledInsufficientBalance>
+      )
+    }
+  }
+
   if (isMaxSpendDisabled) {
     return (
       <>
