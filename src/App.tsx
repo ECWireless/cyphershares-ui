@@ -28,7 +28,7 @@ import useLocalStorage from 'hooks/useLocalStorage'
 // import About from 'views/About'
 // import Farm from 'views/Farm'
 // import Home from 'views/Home'
-import DPI from 'views/DPI'
+import CSDEFI from 'views/CSDEFI'
 // import INDEX from 'views/INDEX'
 // import Vote from 'views/Vote'
 // import News from 'views/News'
@@ -60,7 +60,7 @@ const App: React.FC = () => {
           />
           <Switch>
             <Route exact path='/'>
-              <DPI />
+              <CSDEFI />
               {/* <Home /> */}
             </Route>
             {/* <Route exact path='/dpi'>
