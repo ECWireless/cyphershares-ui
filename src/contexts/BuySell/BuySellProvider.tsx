@@ -93,7 +93,7 @@ const BuySellProvider: React.FC = ({ children }) => {
       if (isUserBuying) {
         if (activeField === 'currency') {
           setTokenQuantity(
-            (Number(uniswapData.amount_out) * 10 ** -18).toString()
+            (Number(uniswapData.amount_out) * 10 ** -18).toFixed(8).toString()
           )
         } else {
           setCurrencyQuantity(uniswapData.display?.from_quantity)
