@@ -34,9 +34,11 @@ const useApproval = (
         ethereum,
         onTxHash
       )
+      console.log(result)
       setIsApproved(result)
       setIsApproving(false)
     } catch (e) {
+      console.error(e)
       setIsApproving(false)
       return false
     }

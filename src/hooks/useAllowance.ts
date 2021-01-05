@@ -37,7 +37,6 @@ const useAllowance = (tokenAddress?: string, spenderAddress?: string) => {
     return () => clearInterval(refreshInterval)
     // eslint-disable-next-line
   }, [account, ethereum, spenderAddress, tokenAddress])
-
   return allowance
 }
 

@@ -42,11 +42,11 @@ const BuySellButton: React.FC = () => {
 
   const dpiApprovalRequired =
     !isUserBuying &&
-    buySellToken.toLowerCase() === 'dpi' &&
+    buySellToken.toLowerCase() === 'csdefi' &&
     !dpiApproval.isApproved
   const dpiApproving =
     !isUserBuying &&
-    buySellToken.toLowerCase() === 'dpi' &&
+    buySellToken.toLowerCase() === 'csdefi' &&
     dpiApproval.isApproving
 
   const indexApprovalRequired =
@@ -77,7 +77,7 @@ const BuySellButton: React.FC = () => {
     buttonText = 'Approving'
     buttonAction = () => {}
   } else if (dpiApprovalRequired) {
-    buttonText = 'Approve DPI'
+    buttonText = 'Approve csDEFI'
     buttonAction = dpiApproval.onApprove
   } else if (indexApprovalRequired) {
     buttonText = 'Approve INDEX'

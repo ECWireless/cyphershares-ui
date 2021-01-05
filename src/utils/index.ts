@@ -31,8 +31,9 @@ export const approve = async (
 ): Promise<boolean> => {
   try {
     const tokenContract = getERC20Contract(provider, tokenAddress)
+    console.log(tokenContract)
     return tokenContract.methods
-      .approve(spenderAddress, ethers.constants.MaxUint256)
+      .approve(spenderAddress, ethers.constants.MaxUint256.toString())
       .send(
         { from: userAddress, gas: 80000 },
         async (error: any, txHash: string) => {
@@ -53,6 +54,7 @@ export const approve = async (
         }
       )
   } catch (e) {
+    console.log(e)
     return false
   }
 }
