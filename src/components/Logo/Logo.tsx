@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom'
 const Logo: React.FC = () => {
   return (
     <StyledLogo to='/'>
-      <StyledEmoji
-        src='https://assets.pokemon.com/assets/cms2/img/pokedex/full/123.png'
-        alt='Owl'
-      />
+      <StyledEmoji src='/static/Scyther.png' alt='Owl' />
     </StyledLogo>
   )
 }
