@@ -132,11 +132,12 @@ export const makeEtherscanLink = (transactionHash: string) => {
 }
 
 export const issue = async (
-  amount: number,
+  amount: string,
   userAddress: string | null | undefined,
   provider: provider,
   issuanceAddress: string | null | undefined,
-  csTokenAddress: string | null | undefined
+  csTokenAddress: string | null | undefined,
+  setAmount: any
 ): Promise<boolean> => {
   try {
     const amountConverted = utils.parseEther(amount.toString()).toString()
@@ -156,6 +157,7 @@ export const issue = async (
             console.log('Issue transaction failed.')
             return false
           }
+          setAmount('0')
           return true
         }
       )
@@ -166,11 +168,12 @@ export const issue = async (
 }
 
 export const redeem = async (
-  amount: number,
+  amount: string,
   userAddress: string | null | undefined,
   provider: provider,
   issuanceAddress: string | null | undefined,
-  csTokenAddress: string | null | undefined
+  csTokenAddress: string | null | undefined,
+  setAmount: any
 ): Promise<boolean> => {
   try {
     const amountConverted = utils.parseEther(amount.toString()).toString()
@@ -191,6 +194,8 @@ export const redeem = async (
             console.log('Redeem transaction failed.')
             return false
           }
+          console.log('issue')
+          setAmount('0')
           return true
         }
       )

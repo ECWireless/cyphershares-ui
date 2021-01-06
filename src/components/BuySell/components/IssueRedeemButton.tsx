@@ -18,7 +18,7 @@ import {
 } from 'constants/ethContractAddresses'
 
 const IssueRedeemButton: React.FC = () => {
-  const [amount, setAmount] = React.useState<number>(0)
+  const [amount, setAmount] = React.useState<string>('0')
   const [redeemDisabled, setRedeemDisabled] = React.useState<boolean>(true)
 
   const { csBalance } = useBalances()
@@ -53,7 +53,14 @@ const IssueRedeemButton: React.FC = () => {
   } else {
     issueButtonText = 'Issue'
     issueButtonAction = () =>
-      issue(amount, account, ethereum, basicIssuanceAddress, csTokenAddress)
+      issue(
+        amount,
+        account,
+        ethereum,
+        basicIssuanceAddress,
+        csTokenAddress,
+        setAmount
+      )
   }
 
   let redeemButtonText: string
@@ -67,7 +74,14 @@ const IssueRedeemButton: React.FC = () => {
   } else {
     redeemButtonText = 'Redeem'
     redeemButtonAction = () =>
-      redeem(amount, account, ethereum, basicIssuanceAddress, csTokenAddress)
+      redeem(
+        amount,
+        account,
+        ethereum,
+        basicIssuanceAddress,
+        csTokenAddress,
+        setAmount
+      )
   }
 
   const onChangeAmount = (e: any) => {
@@ -83,28 +97,32 @@ const IssueRedeemButton: React.FC = () => {
     if (csBalance?.toFixed(18) === new BigNumber(0).toFixed(18)) {
       return
     }
-    setAmount(Number(csBalance?.toFixed(18)))
+    setAmount(Number(csBalance?.toFixed(18)).toString())
     setRedeemDisabled(false)
   }
+
+  console.log(amount)
 
   return (
     <StyledIssueRedeemContainer>
       <SyledButtonContainer>
         <RoundedButton
-          // isDisabled={!currencyQuantity || !tokenQuantity}
+          isDisabled={!account || amount === '0' || amount === ''}
           // isPending={isFetchingOrderData}
           text={issueButtonText}
           onClick={issueButtonAction}
         />
-        <StyledMaxButton>
-          {/* Max {spendingTokenBalance.toFixed(5)} {spendingTokenSymbol} */}
-        </StyledMaxButton>
+        <StyledInsufficientBalance>
+          {/* Insufficient tokens */}
+        </StyledInsufficientBalance>
       </SyledButtonContainer>
 
       <StyledContainerSpacer />
       <SyledButtonContainer>
         <RoundedButton
-          isDisabled={!account || redeemDisabled}
+          isDisabled={
+            !account || redeemDisabled || amount === '0' || amount === ''
+          }
           // isPending={isFetchingOrderData}
           text={redeemButtonText}
           onClick={redeemButtonAction}
@@ -168,6 +186,14 @@ const StyledMaxButton = styled.span`
   margin-top: 10px;
   text-align: center;
   color: ${(props) => props.theme.colors.primary.light};
+  cursor: pointer;
+`
+
+const StyledInsufficientBalance = styled.span`
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+  color: ${(props) => props.theme.colors.red};
   cursor: pointer;
 `
 
