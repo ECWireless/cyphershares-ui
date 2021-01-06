@@ -5,6 +5,7 @@ import BuySellSelector from './components/BuySellSelector'
 import TokenInputs from './components/TokenInputs'
 import OrderSummary from './components/OrderSummary'
 import BuySellButton from './components/BuySellButton'
+import IssueRedeemButton from './components/IssueRedeemButton'
 
 const BuySellWidget: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const BuySellWidget: React.FC = () => {
         <TokenInputs />
         <OrderSummary />
         <BuySellButton />
+        <IssueRedeemButton />
       </StyledBuySellCardContent>
     </StyledBuySellCard>
   )
