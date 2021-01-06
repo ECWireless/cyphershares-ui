@@ -134,21 +134,16 @@ export const makeEtherscanLink = (transactionHash: string) => {
 export const issue = async (
   amount: number,
   userAddress: string | null | undefined,
-  provider: provider
+  provider: provider,
+  issuanceAddress: string | null | undefined,
+  csTokenAddress: string | null | undefined
 ): Promise<boolean> => {
   try {
     const amountConverted = utils.parseEther(amount.toString()).toString()
-    const tokenContract = getIssuanceContract(
-      provider,
-      '0x0f0eE18189FB5472226A7E54e0c7a3BB1155705D'
-    )
+    const tokenContract = getIssuanceContract(provider, issuanceAddress || '')
     console.log(tokenContract)
     return tokenContract.methods
-      .issue(
-        '0xf9d50338Fb100B5a97e79615a8a912e10975b61c',
-        amountConverted,
-        userAddress
-      )
+      .issue(csTokenAddress, amountConverted, userAddress)
       .send(
         { from: userAddress, gas: 278649 },
         async (error: any, txHash: string) => {
@@ -173,22 +168,17 @@ export const issue = async (
 export const redeem = async (
   amount: number,
   userAddress: string | null | undefined,
-  provider: provider
+  provider: provider,
+  issuanceAddress: string | null | undefined,
+  csTokenAddress: string | null | undefined
 ): Promise<boolean> => {
   try {
     const amountConverted = utils.parseEther(amount.toString()).toString()
     console.log(amountConverted)
-    const tokenContract = getIssuanceContract(
-      provider,
-      '0x0f0eE18189FB5472226A7E54e0c7a3BB1155705D'
-    )
+    const tokenContract = getIssuanceContract(provider, issuanceAddress || '')
     console.log(tokenContract)
     return tokenContract.methods
-      .redeem(
-        '0xf9d50338Fb100B5a97e79615a8a912e10975b61c',
-        amountConverted,
-        userAddress
-      )
+      .redeem(csTokenAddress, amountConverted, userAddress)
       .send(
         { from: userAddress, gas: 313906 },
         async (error: any, txHash: string) => {

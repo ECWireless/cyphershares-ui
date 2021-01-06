@@ -46,7 +46,8 @@ const IssueRedeemButton: React.FC = () => {
     issueButtonAction = batApproval.onApprove
   } else {
     issueButtonText = 'Issue'
-    issueButtonAction = () => issue(amount, account, ethereum)
+    issueButtonAction = () =>
+      issue(amount, account, ethereum, basicIssuanceAddress, csTokenAddress)
   }
 
   let redeemButtonText: string
@@ -59,7 +60,8 @@ const IssueRedeemButton: React.FC = () => {
     redeemButtonAction = csApproval.onApprove
   } else {
     redeemButtonText = 'Redeem'
-    redeemButtonAction = () => redeem(amount, account, ethereum)
+    redeemButtonAction = () =>
+      redeem(amount, account, ethereum, basicIssuanceAddress, csTokenAddress)
   }
 
   const onChangeAmount = (e: any) => {
