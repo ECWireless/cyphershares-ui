@@ -1,11 +1,14 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import useWallet from 'hooks/useWallet'
+// Hooks
 import useApproval from 'hooks/useApproval'
+import useBalances from 'hooks/useBalances'
+import useWallet from 'hooks/useWallet'
 
 import { RoundedButton } from 'components/RoundedButton'
 import { issue, redeem } from 'utils'
+import BigNumber from 'utils/bignumber'
 import {
   usdcTokenAddress,
   zrxTokenAddress,
@@ -16,6 +19,9 @@ import {
 
 const IssueRedeemButton: React.FC = () => {
   const [amount, setAmount] = React.useState<number>(0)
+  const [redeemDisabled, setRedeemDisabled] = React.useState<boolean>(true)
+
+  const { csBalance } = useBalances()
 
   const { account, ethereum, onOpenWalletModal } = useWallet()
   const usdcApproval = useApproval(usdcTokenAddress, basicIssuanceAddress)
@@ -66,25 +72,53 @@ const IssueRedeemButton: React.FC = () => {
 
   const onChangeAmount = (e: any) => {
     setAmount(e.target.value)
+    if (csBalance) {
+      if (e.target.value < Number(csBalance?.toFixed(18))) {
+        setRedeemDisabled(false)
+      }
+    }
+  }
+
+  const maxButtonAction = () => {
+    if (csBalance?.toFixed(18) === new BigNumber(0).toFixed(18)) {
+      return
+    }
+    setAmount(Number(csBalance?.toFixed(18)))
+    setRedeemDisabled(false)
   }
 
   return (
     <StyledIssueRedeemContainer>
-      <RoundedButton
-        // isDisabled={!currencyQuantity || !tokenQuantity}
-        // isPending={isFetchingOrderData}
-        text={issueButtonText}
-        onClick={issueButtonAction}
-      />
+      <SyledButtonContainer>
+        <RoundedButton
+          // isDisabled={!currencyQuantity || !tokenQuantity}
+          // isPending={isFetchingOrderData}
+          text={issueButtonText}
+          onClick={issueButtonAction}
+        />
+        <StyledMaxButton>
+          {/* Max {spendingTokenBalance.toFixed(5)} {spendingTokenSymbol} */}
+        </StyledMaxButton>
+      </SyledButtonContainer>
 
       <StyledContainerSpacer />
-
-      <RoundedButton
-        // isDisabled={!currencyQuantity || !tokenQuantity}
-        // isPending={isFetchingOrderData}
-        text={redeemButtonText}
-        onClick={redeemButtonAction}
-      />
+      <SyledButtonContainer>
+        <RoundedButton
+          isDisabled={!account || redeemDisabled}
+          // isPending={isFetchingOrderData}
+          text={redeemButtonText}
+          onClick={redeemButtonAction}
+        />
+        {csBalance?.toFixed(18) === new BigNumber(0).toFixed(18) ? (
+          <StyledMaxButton onClick={maxButtonAction}>
+            Insufficient csDEFI
+          </StyledMaxButton>
+        ) : (
+          <StyledMaxButton onClick={maxButtonAction}>
+            Max {csBalance?.toFixed(5)} csDEFI
+          </StyledMaxButton>
+        )}
+      </SyledButtonContainer>
 
       <StyledContainerSpacer />
 
@@ -116,9 +150,25 @@ const StyledIssueRedeemContainer = styled.div`
   margin-top: 20px;
 `
 
+const SyledButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+`
+
 const StyledContainerSpacer = styled.div`
   width: 10%;
   height: 100%;
+`
+
+const StyledMaxButton = styled.span`
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+  text-align: center;
+  color: ${(props) => props.theme.colors.primary.light};
+  cursor: pointer;
 `
 
 interface StyledCurrencyContainerProps {
