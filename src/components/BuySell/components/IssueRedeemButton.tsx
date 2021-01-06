@@ -121,13 +121,18 @@ const IssueRedeemButton: React.FC = () => {
       <SyledButtonContainer>
         <RoundedButton
           isDisabled={
-            !account || redeemDisabled || amount === '0' || amount === ''
+            !account ||
+            redeemDisabled ||
+            amount === '0' ||
+            amount === '' ||
+            Number(csBalance?.toFixed(18)) < Number(amount)
           }
           // isPending={isFetchingOrderData}
           text={redeemButtonText}
           onClick={redeemButtonAction}
         />
-        {csBalance?.toFixed(18) === new BigNumber(0).toFixed(18) ? (
+        {csBalance?.toFixed(18) === new BigNumber(0).toFixed(18) ||
+        Number(csBalance?.toFixed(18)) < Number(amount) ? (
           <StyledMaxButton onClick={maxButtonAction}>
             Insufficient csDEFI
           </StyledMaxButton>
