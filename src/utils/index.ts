@@ -6,6 +6,7 @@ import { provider, TransactionReceipt } from 'web3-core'
 import { AbiItem } from 'web3-utils'
 
 import ERC20ABI from 'index-sdk/abi/ERC20.json'
+import ISSUEABI from 'index-sdk/abi/Issuance.json'
 
 const sleep = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms))
@@ -128,4 +129,62 @@ export const getFullDisplayBalance = (balance: BigNumber, decimals = 18) => {
 
 export const makeEtherscanLink = (transactionHash: string) => {
   return `https://etherscan.io/tx/${transactionHash}`
+}
+
+export const issue = async (
+  userAddress: string | null | undefined,
+  provider: provider
+): Promise<boolean> => {
+  try {
+    const tokenContract = getIssuanceContract(
+      provider,
+      '0x0f0eE18189FB5472226A7E54e0c7a3BB1155705D'
+    )
+    console.log(tokenContract)
+    return tokenContract.methods
+      .issue(
+        '0xf9d50338Fb100B5a97e79615a8a912e10975b61c',
+        '10000000000000000000',
+        userAddress
+      )
+      .send(
+        { from: userAddress, gas: 278649 },
+        async (error: any, txHash: string) => {
+          if (error) {
+            console.log('Could not issue token!', error)
+            return false
+          }
+          const status = await waitTransaction(provider, txHash)
+          if (!status) {
+            console.log('Issue transaction failed.')
+            return false
+          }
+          return true
+        }
+      )
+  } catch (e) {
+    console.log(e)
+    return false
+  }
+
+  // const contract = new .eth.Contract(
+  //   ISSUEABI.abi,
+  //   BASIC_ISSUANCE_ADDRESS
+  // )
+  // const newData = await contract.methods
+  // .issue(CSDEFI_TOKEN_ADDRESS, TEN_TOKENS, MY_ADDRESS)
+  // .send({from: MY_ADDRESS}, function(error, result){
+  //   return true
+  // });
+
+  // return false
+}
+
+export const getIssuanceContract = (provider: provider, address: string) => {
+  const web3 = new Web3(provider)
+  const contract = new web3.eth.Contract(
+    (ISSUEABI.abi as unknown) as AbiItem,
+    address
+  )
+  return contract
 }

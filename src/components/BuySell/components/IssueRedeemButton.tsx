@@ -5,6 +5,7 @@ import useWallet from 'hooks/useWallet'
 import useApproval from 'hooks/useApproval'
 
 import { RoundedButton } from 'components/RoundedButton'
+import { issue } from 'utils'
 import {
   usdcTokenAddress,
   zrxTokenAddress,
@@ -14,7 +15,7 @@ import {
 } from 'constants/ethContractAddresses'
 
 const IssueRedeemButton: React.FC = () => {
-  const { account, onOpenWalletModal } = useWallet()
+  const { account, ethereum, onOpenWalletModal } = useWallet()
   const usdcApproval = useApproval(usdcTokenAddress, basicIssuanceAddress)
   const zrxApproval = useApproval(zrxTokenAddress, basicIssuanceAddress)
   const batApproval = useApproval(batTokenAddress, basicIssuanceAddress)
@@ -41,7 +42,7 @@ const IssueRedeemButton: React.FC = () => {
     buttonAction = batApproval.onApprove
   } else {
     buttonText = 'Issue'
-    buttonAction = () => console.log('Issuing token')
+    buttonAction = () => issue(account, ethereum)
   }
 
   return (
