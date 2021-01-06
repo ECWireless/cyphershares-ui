@@ -166,18 +166,43 @@ export const issue = async (
     console.log(e)
     return false
   }
+}
 
-  // const contract = new .eth.Contract(
-  //   ISSUEABI.abi,
-  //   BASIC_ISSUANCE_ADDRESS
-  // )
-  // const newData = await contract.methods
-  // .issue(CSDEFI_TOKEN_ADDRESS, TEN_TOKENS, MY_ADDRESS)
-  // .send({from: MY_ADDRESS}, function(error, result){
-  //   return true
-  // });
-
-  // return false
+export const redeem = async (
+  userAddress: string | null | undefined,
+  provider: provider
+): Promise<boolean> => {
+  try {
+    const tokenContract = getIssuanceContract(
+      provider,
+      '0x0f0eE18189FB5472226A7E54e0c7a3BB1155705D'
+    )
+    console.log(tokenContract)
+    return tokenContract.methods
+      .redeem(
+        '0xf9d50338Fb100B5a97e79615a8a912e10975b61c',
+        '10000000000000000000',
+        userAddress
+      )
+      .send(
+        { from: userAddress, gas: 313906 },
+        async (error: any, txHash: string) => {
+          if (error) {
+            console.log('Could not redeem token!', error)
+            return false
+          }
+          const status = await waitTransaction(provider, txHash)
+          if (!status) {
+            console.log('Redeem transaction failed.')
+            return false
+          }
+          return true
+        }
+      )
+  } catch (e) {
+    console.log(e)
+    return false
+  }
 }
 
 export const getIssuanceContract = (provider: provider, address: string) => {
