@@ -1,16 +1,56 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import useWallet from 'hooks/useWallet'
+import useApproval from 'hooks/useApproval'
+
 import { RoundedButton } from 'components/RoundedButton'
+import {
+  usdcTokenAddress,
+  zrxTokenAddress,
+  batTokenAddress,
+  csTokenAddress,
+  basicIssuanceAddress,
+} from 'constants/ethContractAddresses'
 
 const IssueRedeemButton: React.FC = () => {
+  const { account, onOpenWalletModal } = useWallet()
+  const usdcApproval = useApproval(usdcTokenAddress, basicIssuanceAddress)
+  const zrxApproval = useApproval(zrxTokenAddress, basicIssuanceAddress)
+  const batApproval = useApproval(batTokenAddress, basicIssuanceAddress)
+
+  const loginRequiredBeforeSubmit = !account
+
+  const usdcApprovalRequired = !usdcApproval.isApproved
+  const zrxApprovalRequired = !zrxApproval.isApproved
+  const batApprovalRequired = !batApproval.isApproved
+
+  let buttonText: string
+  let buttonAction: (...args: any[]) => any
+  if (loginRequiredBeforeSubmit) {
+    buttonText = 'Issue'
+    buttonAction = onOpenWalletModal
+  } else if (usdcApprovalRequired) {
+    buttonText = 'Approve USDC to Issue'
+    buttonAction = usdcApproval.onApprove
+  } else if (zrxApprovalRequired) {
+    buttonText = 'Approve ZRX to Issue'
+    buttonAction = zrxApproval.onApprove
+  } else if (batApprovalRequired) {
+    buttonText = 'Approve BAT to Issue'
+    buttonAction = batApproval.onApprove
+  } else {
+    buttonText = 'Issue'
+    buttonAction = () => console.log('Issuing token')
+  }
+
   return (
     <StyledIssueRedeemContainer>
       <RoundedButton
         // isDisabled={!currencyQuantity || !tokenQuantity}
         // isPending={isFetchingOrderData}
-        text={'Issue'}
-        // onClick={buttonAction}
+        text={buttonText}
+        onClick={buttonAction}
       />
       <StyledContainerSpacer />
       <RoundedButton
