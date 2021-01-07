@@ -137,9 +137,7 @@ const TokenInputs: React.FC = () => {
               onChange={(e) => onSetTokenQuantity(e.target.value)}
               onFocus={() => onSetActiveField('set')}
             />
-            <StyledTargetTokenSymbol>
-              {buySellToken.toUpperCase()}
-            </StyledTargetTokenSymbol>
+            <StyledTargetTokenSymbol>{buySellToken}</StyledTargetTokenSymbol>
           </StyledCurrencySelectWrapper>
         </StyledCurrencyContainer>
       </>
@@ -169,9 +167,7 @@ const TokenInputs: React.FC = () => {
             onChange={(e) => onSetTokenQuantity(e.target.value)}
             onFocus={() => onSetActiveField('set')}
           />
-          <StyledTargetTokenSymbol>
-            {buySellToken.toUpperCase()}
-          </StyledTargetTokenSymbol>
+          <StyledTargetTokenSymbol>{buySellToken}</StyledTargetTokenSymbol>
         </StyledCurrencySelectWrapper>
       </StyledCurrencyContainer>
 
