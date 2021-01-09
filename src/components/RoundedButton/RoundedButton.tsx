@@ -15,7 +15,7 @@ const RoundedButton: React.FC<RoundedButtonProps> = ({
   isPending,
   onClick,
 }: RoundedButtonProps) => {
-  if (isDisabled) {
+  if (isDisabled && !isPending) {
     return <StyledDisabledButton disabled>{text}</StyledDisabledButton>
   }
 
