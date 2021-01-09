@@ -130,6 +130,7 @@ const BuySellProvider: React.FC = ({ children }) => {
       uniswapData,
       account
     )
+
     const transactionOptions = getUniswapTransactionOptions(
       uniswapTradeType,
       uniswapData,

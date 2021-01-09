@@ -101,8 +101,6 @@ const IssueRedeemButton: React.FC = () => {
     setRedeemDisabled(false)
   }
 
-  console.log(amount)
-
   return (
     <StyledIssueRedeemContainer>
       <SyledButtonContainer>
