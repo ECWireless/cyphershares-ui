@@ -55,7 +55,6 @@ export const getUniswapTradeTransaction = (
             })
         })
     case UniswapTradeType.SWAP_EXACT_TOKENS_FOR_ETH:
-      console.log(tradeConfigs)
       return () =>
         new Promise((resolve, reject) => {
           uniswapInstance.methods
