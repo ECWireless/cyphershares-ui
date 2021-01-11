@@ -16,7 +16,13 @@ export const fetchTokenBuySellData = (
   // const requestUrl = `http://localhost:3001/api/${buyOrSellRoute}/${requestQuantity}/${currencyId}/${activeField}`
 
   return fetch(requestUrl)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status === 400) {
+        return console.error('Input must be non-zero.')
+      } else {
+        return response.json()
+      }
+    })
     .then((json) => {
       return json.buy_price || json.sell_price || {}
     })
