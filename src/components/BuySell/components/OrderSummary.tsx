@@ -22,10 +22,10 @@ const OrderSummary: React.FC = () => {
           {uniswapData?.display?.slippage}
         </StyledOrderSummaryValue>
 
-        <StyledOrderSummaryLabel>Network Fee</StyledOrderSummaryLabel>
+        {/* <StyledOrderSummaryLabel>Network Fee</StyledOrderSummaryLabel>
         <StyledOrderSummaryValue>
           {uniswapData?.display?.gas_price_eth}
-        </StyledOrderSummaryValue>
+        </StyledOrderSummaryValue> */}
 
         <StyledOrderSummaryLabel>Offered From</StyledOrderSummaryLabel>
         <StyledOrderSummaryValue>Uniswap</StyledOrderSummaryValue>
