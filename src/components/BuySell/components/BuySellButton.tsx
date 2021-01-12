@@ -32,6 +32,7 @@ const BuySellButton: React.FC = () => {
   } = useBuySell()
 
   const { account, onOpenWalletModal } = useWallet()
+  const slippage = uniswapData?.slippage || 0
   const daiApproval = useApproval(daiTokenAddress, uniswapRouterAddress)
   const usdcApproval = useApproval(usdcTokenAddress, uniswapRouterAddress)
   const dpiApproval = useApproval(csTokenAddress, uniswapRouterAddress)
@@ -98,7 +99,7 @@ const BuySellButton: React.FC = () => {
 
   return (
     <RoundedButton
-      isDisabled={!currencyQuantity || !tokenQuantity}
+      isDisabled={!currencyQuantity || !tokenQuantity || slippage > 15}
       isPending={isFetchingOrderData}
       text={buttonText}
       onClick={buttonAction}

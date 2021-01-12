@@ -35,6 +35,7 @@ const createTheme = (): {
 
   const green = hslToCssString({ h: 147, s: 73, l: 44 })
   const red = hslToCssString({ h: 356, s: 69, l: 55 })
+  const yellow = hslToCssString({ h: 49, s: 100, l: 44 })
   const transparentColors = generateTransparentColors(baseGreyH)
 
   const buttonSizes = {
@@ -54,6 +55,7 @@ const createTheme = (): {
     white,
     green,
     red,
+    yellow,
     transparentColors,
   }
 
@@ -68,6 +70,7 @@ const createTheme = (): {
     white: whiteDark,
     green,
     red,
+    yellow,
     transparentColors,
   }
 

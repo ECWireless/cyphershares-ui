@@ -65,6 +65,20 @@ const MaxButton: React.FC = () => {
     requiredQuantity
   )
 
+  if (uniswapData !== undefined) {
+    if (uniswapData?.slippage > 15) {
+      return (
+        <StyledInsufficientBalance>
+          Price impact is too high
+        </StyledInsufficientBalance>
+      )
+    } else if (uniswapData?.slippage > 3) {
+      return (
+        <StyledWarningIndicator>Price impact is high</StyledWarningIndicator>
+      )
+    }
+  }
+
   if (!account) return null
 
   if (spendingTokenBalance.isLessThanOrEqualTo(0)) {
@@ -73,16 +87,6 @@ const MaxButton: React.FC = () => {
         You do not have this token
       </StyledInsufficientBalance>
     )
-  }
-
-  if (uniswapData !== undefined) {
-    if (uniswapData?.slippage > 2) {
-      return (
-        <StyledInsufficientBalance>
-          Price impact is too high
-        </StyledInsufficientBalance>
-      )
-    }
   }
 
   if (isMaxSpendDisabled) {
@@ -113,6 +117,14 @@ const MaxButton: React.FC = () => {
     </>
   )
 }
+
+const StyledWarningIndicator = styled.span`
+  width: 100%;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: ${(props) => props.theme.colors.yellow};
+  cursor: pointer;
+`
 
 const StyledInsufficientBalance = styled.span`
   width: 100%;
