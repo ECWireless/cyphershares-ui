@@ -44,7 +44,7 @@ export const getUniswapTradeTransaction = (
         new Promise((resolve, reject) => {
           uniswapInstance.methods
             .swapExactETHForTokens(...tradeConfigs)
-            .send(txOpts)
+            .send({ from: txOpts.from, value: txOpts.value })
             .on('transactionHash', (txId: string) => {
               if (!txId) reject()
 
@@ -59,7 +59,7 @@ export const getUniswapTradeTransaction = (
         new Promise((resolve, reject) => {
           uniswapInstance.methods
             .swapExactTokensForETH(...tradeConfigs)
-            .send(txOpts)
+            .send({ from: txOpts.from })
             .on('transactionHash', (txId: string) => {
               if (!txId) reject()
 
