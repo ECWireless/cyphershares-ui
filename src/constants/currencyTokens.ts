@@ -1,4 +1,4 @@
-import { daiTokenAddress, usdcTokenAddress } from './ethContractAddresses'
+// import { daiTokenAddress, usdcTokenAddress } from './ethContractAddresses'
 
 export const currencyTokens = [
   {
@@ -7,16 +7,16 @@ export const currencyTokens = [
     id: 'wrapped_eth',
     address: undefined,
   },
-  {
-    name: 'Dai',
-    label: 'DAI',
-    id: 'mcd',
-    address: daiTokenAddress,
-  },
-  {
-    name: 'USD Coin',
-    label: 'USDC',
-    id: 'usdc',
-    address: usdcTokenAddress,
-  },
+  // {
+  //   name: 'Dai',
+  //   label: 'DAI',
+  //   id: 'mcd',
+  //   address: daiTokenAddress,
+  // },
+  // {
+  //   name: 'USD Coin',
+  //   label: 'USDC',
+  //   id: 'usdc',
+  //   address: usdcTokenAddress,
+  // },
 ]

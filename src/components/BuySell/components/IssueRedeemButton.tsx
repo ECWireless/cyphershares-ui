@@ -19,9 +19,12 @@ import {
 
 const IssueRedeemButton: React.FC = () => {
   const [amount, setAmount] = React.useState<string>('0')
+  const [isInsufficientTokens, setIsInsufficientTokens] = React.useState<
+    boolean
+  >(false)
   const [redeemDisabled, setRedeemDisabled] = React.useState<boolean>(true)
 
-  const { csBalance } = useBalances()
+  const { csBalance, usdcBalance, zrxBalance, batBalance } = useBalances()
 
   const { account, ethereum, onOpenWalletModal } = useWallet()
   const usdcApproval = useApproval(usdcTokenAddress, basicIssuanceAddress)
@@ -91,13 +94,24 @@ const IssueRedeemButton: React.FC = () => {
         setRedeemDisabled(false)
       }
     }
+
+    if (
+      1 > Number(usdcBalance?.toFixed(6)) ||
+      1 > Number(zrxBalance?.toFixed(18)) ||
+      1 > Number(batBalance?.toFixed(18))
+    ) {
+      setIsInsufficientTokens(true)
+    }
   }
 
   const maxButtonAction = () => {
     if (csBalance?.toFixed(18) === new BigNumber(0).toFixed(18)) {
       return
     }
-    setAmount(Number(csBalance?.toFixed(18)).toString())
+    if (csBalance === undefined) {
+      return
+    }
+    setAmount(csBalance?.toFixed())
     setRedeemDisabled(false)
   }
 
@@ -105,14 +119,18 @@ const IssueRedeemButton: React.FC = () => {
     <StyledIssueRedeemContainer>
       <SyledButtonContainer>
         <RoundedButton
-          isDisabled={!account || amount === '0' || amount === ''}
+          isDisabled={
+            !account || amount === '0' || amount === '' || isInsufficientTokens
+          }
           // isPending={isFetchingOrderData}
           text={issueButtonText}
           onClick={issueButtonAction}
         />
-        <StyledInsufficientBalance>
-          {/* Insufficient tokens */}
-        </StyledInsufficientBalance>
+        {isInsufficientTokens && (
+          <StyledInsufficientBalance>
+            Insufficient tokens
+          </StyledInsufficientBalance>
+        )}
       </SyledButtonContainer>
 
       <StyledContainerSpacer />
@@ -136,7 +154,7 @@ const IssueRedeemButton: React.FC = () => {
           </StyledMaxButton>
         ) : (
           <StyledMaxButton onClick={maxButtonAction}>
-            Max {csBalance?.toFixed(5)} csDEFI
+            Max {csBalance?.toFixed(2)} csDEFI
           </StyledMaxButton>
         )}
       </SyledButtonContainer>

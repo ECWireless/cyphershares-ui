@@ -6,6 +6,8 @@ export interface ContextValues {
   csBalance?: BigNumber
   daiBalance?: BigNumber
   usdcBalance?: BigNumber
+  zrxBalance?: BigNumber
+  batBalance?: BigNumber
   uniswapEthDpiLpBalance?: BigNumber
 
   // For Liquidity Mining 1 program

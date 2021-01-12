@@ -12,6 +12,8 @@ import {
   // indexTokenAddress,
   // daiTokenAddress,
   usdcTokenAddress,
+  zrxTokenAddress,
+  batTokenAddress,
   // uniswapEthDpiLpTokenAddress,
   // stakingRewardsAddress,
   // farmTwoAddress,
@@ -23,6 +25,8 @@ const Provider: React.FC = ({ children }) => {
   const [csBalance, setCSBalance] = useState<BigNumber>()
   const [daiBalance, setDaiBalance] = useState<BigNumber>()
   const [usdcBalance, setUsdcBalance] = useState<BigNumber>()
+  const [zrxBalance, setZrxBalance] = useState<BigNumber>()
+  const [batBalance, setBatBalance] = useState<BigNumber>()
   const [uniswapEthDpiLpBalance, setUniswapEthDpiLpBalance] = useState<
     BigNumber
   >()
@@ -52,10 +56,10 @@ const Provider: React.FC = ({ children }) => {
     async (userAddress: string, provider: provider) => {
       const balances = await Promise.all([
         getEthBalance(provider, userAddress),
-        // getBalance(provider, indexTokenAddress as string, userAddress),
-        // getBalance(provider, daiTokenAddress as string, userAddress),
-        getBalance(provider, usdcTokenAddress as string, userAddress),
         getBalance(provider, csTokenAddress as string, userAddress),
+        getBalance(provider, usdcTokenAddress as string, userAddress),
+        getBalance(provider, zrxTokenAddress as string, userAddress),
+        getBalance(provider, batTokenAddress as string, userAddress),
         // getBalance(
         //   provider,
         //   uniswapEthDpiLpTokenAddress as string,
@@ -71,18 +75,18 @@ const Provider: React.FC = ({ children }) => {
       setEthBalance(
         new BigNumber(balances[0]).dividedBy(new BigNumber(10).pow(18))
       )
-      setUsdcBalance(
-        new BigNumber(balances[1]).dividedBy(new BigNumber(10).pow(6))
-      )
-      // setIndexBalance(
-      //   new BigNumber(balances[1]).dividedBy(new BigNumber(10).pow(18))
-      // )
       setCSBalance(
-        new BigNumber(balances[2]).dividedBy(new BigNumber(10).pow(18))
+        new BigNumber(balances[1]).dividedBy(new BigNumber(10).pow(18))
       )
-      // setDaiBalance(
-      //   new BigNumber(balances[3]).dividedBy(new BigNumber(10).pow(18))
-      // )
+      setUsdcBalance(
+        new BigNumber(balances[2]).dividedBy(new BigNumber(10).pow(6))
+      )
+      setZrxBalance(
+        new BigNumber(balances[3]).dividedBy(new BigNumber(10).pow(18))
+      )
+      setBatBalance(
+        new BigNumber(balances[4]).dividedBy(new BigNumber(10).pow(18))
+      )
       // setUsdcBalance(
       //   new BigNumber(balances[4]).dividedBy(new BigNumber(10).pow(6))
       // )
@@ -106,6 +110,9 @@ const Provider: React.FC = ({ children }) => {
       setEthBalance,
       // setIndexBalance,
       setCSBalance,
+      setUsdcBalance,
+      setZrxBalance,
+      setBatBalance,
       // setUniswapEthDpiLpBalance,
       // setStakedUniswapEthDpiLpBalance,
       // setUnharvestedIndexBalance,
@@ -121,6 +128,8 @@ const Provider: React.FC = ({ children }) => {
       setCSBalance(new BigNumber(0))
       setDaiBalance(new BigNumber(0))
       setUsdcBalance(new BigNumber(0))
+      setZrxBalance(new BigNumber(0))
+      setBatBalance(new BigNumber(0))
       setUniswapEthDpiLpBalance(new BigNumber(0))
       setStakedUniswapEthDpiLpBalance(new BigNumber(0))
       setUnharvestedIndexBalance(new BigNumber(0))
@@ -148,6 +157,8 @@ const Provider: React.FC = ({ children }) => {
         csBalance,
         daiBalance,
         usdcBalance,
+        zrxBalance,
+        batBalance,
         uniswapEthDpiLpBalance,
 
         stakedUniswapEthDpiLpBalance,
