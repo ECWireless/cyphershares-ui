@@ -14,7 +14,7 @@ const OrderSummary: React.FC = () => {
       <StyledOrderSummaryContainer>
         <StyledOrderSummaryLabel>Minimum Receive</StyledOrderSummaryLabel>
         <StyledOrderSummaryValue>
-          {uniswapData?.display?.to_quantity}
+          {uniswapData?.display?.to_quantity_minimum}
         </StyledOrderSummaryValue>
 
         <StyledOrderSummaryLabel>Price Impact</StyledOrderSummaryLabel>

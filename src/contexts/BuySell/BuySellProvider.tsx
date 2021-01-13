@@ -92,14 +92,12 @@ const BuySellProvider: React.FC = ({ children }) => {
       // Populate the inactive field with API response
       if (isUserBuying) {
         if (activeField === 'currency') {
-          setTokenQuantity(
-            (Number(uniswapData.amount_out) * 10 ** -18).toFixed(8).toString()
-          )
+          setTokenQuantity(uniswapData?.display?.to_quantity_estimate)
         } else {
           setCurrencyQuantity(uniswapData.display?.from_quantity)
         }
       } else {
-        setCurrencyQuantity(uniswapData.display?.to_quantity)
+        setCurrencyQuantity(uniswapData.display?.to_quantity_estimate)
       }
     })
     // eslint-disable-next-line

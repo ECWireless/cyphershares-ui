@@ -1,7 +1,8 @@
 export type UniswapPriceDisplay = {
   from_quantity: string
   from_token_price_usd: string
-  to_quantity: string
+  to_quantity_estimate: string
+  to_quantity_minimum: string
   to_token_price_usd: string
   input_value_usd: string
   output_value_usd: string
