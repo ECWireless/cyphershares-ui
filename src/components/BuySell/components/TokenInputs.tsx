@@ -122,9 +122,9 @@ const TokenInputs: React.FC = () => {
         >
           <StyledTokenLabelWrapper>
             <StyledCurrencyLabel>Buy (estimated)</StyledCurrencyLabel>
-            <StyledCurrencyLabel>
+            {/* <StyledCurrencyLabel>
               {uniswapData?.display?.output_value_usd}
-            </StyledCurrencyLabel>
+            </StyledCurrencyLabel> */}
           </StyledTokenLabelWrapper>
           <StyledCurrencySelectWrapper>
             <StyledInputField
@@ -152,9 +152,9 @@ const TokenInputs: React.FC = () => {
       >
         <StyledTokenLabelWrapper>
           <StyledCurrencyLabel>Sell</StyledCurrencyLabel>
-          <StyledCurrencyLabel>
+          {/* <StyledCurrencyLabel>
             {uniswapData?.display?.input_value_usd}
-          </StyledCurrencyLabel>
+          </StyledCurrencyLabel> */}
         </StyledTokenLabelWrapper>
         <StyledCurrencySelectWrapper>
           <StyledInputField
